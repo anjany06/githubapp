@@ -22,7 +22,7 @@ const items = [
   },
   {
     title: "Q&A",
-    url: "/aq",
+    url: "/qa",
     icon: Bot,
   },
   {
@@ -32,7 +32,7 @@ const items = [
   },
   {
     title: "Billings",
-    url: "/billing",
+    url: "/billings",
     icon: CreditCard,
   },
 ];
