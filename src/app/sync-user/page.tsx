@@ -1,7 +1,7 @@
 import { db } from "@/lib/prisma";
 import { auth, clerkClient } from "@clerk/nextjs/server";
 import { notFound, redirect } from "next/navigation";
-import { NextApiRequest, NextApiResponse } from "next";
+
 
 const SyncUser = async () => {
   const { userId } = await auth();
