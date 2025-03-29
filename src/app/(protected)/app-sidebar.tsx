@@ -1,5 +1,6 @@
 "use client";
 
+import { Button } from "@/components/ui/button";
 import {
   Sidebar,
   SidebarContent,
@@ -10,8 +11,17 @@ import {
   SidebarMenu,
   SidebarMenuButton,
   SidebarMenuItem,
+  useSidebar,
 } from "@/components/ui/sidebar";
-import { Bot, CreditCard, LayoutDashboard, Presentation } from "lucide-react";
+import { cn } from "@/lib/utils";
+import {
+  Bot,
+  CreditCard,
+  LayoutDashboard,
+  Plus,
+  Presentation,
+} from "lucide-react";
+import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 
@@ -40,20 +50,32 @@ const items = [
 
 const projects = [
   {
-    title: "Project 1",
+    name: "Project 1",
   },
   {
-    title: "Project 2",
+    name: "Project 2",
   },
   {
-    title: "Project 3",
+    name: "Project 3",
   },
 ];
 export function AppSidebar() {
   const pathname = usePathname();
+  const { open } = useSidebar();
   return (
     <Sidebar collapsible="icon" variant="floating">
-      <SidebarHeader>Logo</SidebarHeader>
+      <SidebarHeader>
+        Logo
+        {/* <div className="flex items-center gap-2">
+          <Image src="/logo.png" alt="logo" width={40} height={40}/>
+          {open && (
+          <h1 className="text-xl font-bold text-primary/80">
+          Name
+          </h1>
+          )
+          }
+        </div> */}
+      </SidebarHeader>
       {/* Contents */}
       <SidebarContent>
         {/* Group 1 */}
@@ -89,15 +111,36 @@ export function AppSidebar() {
             <SidebarMenu>
               {projects.map((project) => {
                 return (
-                  <SidebarMenuItem key={project.title}>
+                  <SidebarMenuItem key={project.name}>
                     <SidebarMenuButton asChild>
                       <div>
-                        <div className="rounded-sm border size-6 flex items-center justify-center text-sm bg-white text-primary"></div>
+                        <div
+                          className={cn(
+                            "rounded-sm border size-6 flex justify-center items-center text-sm bg-white text-primary",
+                            {
+                              "bg-primary text-white": true,
+                            }
+                          )}
+                        >
+                          {project.name[0]}
+                        </div>
+                        <span>{project.name}</span>
                       </div>
                     </SidebarMenuButton>
                   </SidebarMenuItem>
                 );
               })}
+              <div className="h-2"></div>
+              {open && (
+                <SidebarMenuItem>
+                  <Link href="/create">
+                    <Button size="sm" variant={"outline"} className="w-fit ">
+                      <Plus />
+                      Create Project
+                    </Button>
+                  </Link>
+                </SidebarMenuItem>
+              )}
             </SidebarMenu>
           </SidebarGroupContent>
         </SidebarGroup>

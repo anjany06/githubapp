@@ -1,4 +1,4 @@
-import { SidebarProvider } from "@/components/ui/sidebar";
+import { SidebarProvider, SidebarTrigger } from "@/components/ui/sidebar";
 import { UserButton } from "@clerk/nextjs";
 import React from "react";
 import { AppSidebar } from "./app-sidebar";
@@ -20,6 +20,7 @@ const SidebarLayout = ({ children }: Props) => {
         <div className="h-4"></div>
         {/* Main content */}
         <div className="border-sidebar-border bg-sidebar border shadow rounded-md overflow-y-scroll h-[calc(100vh-6rem)] p-4">
+          {/* <SidebarTrigger /> */}
           {children}
         </div>
       </main>
