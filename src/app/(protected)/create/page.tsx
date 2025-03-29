@@ -3,6 +3,9 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import React from "react";
 import { useForm } from "react-hook-form";
+import { createTRPCClient } from "@trpc/react-query";
+import { appRouter } from "@/server/api/root";
+
 
 type FormInput = {
   repoUrl: string;
@@ -12,6 +15,8 @@ type FormInput = {
 
 const CreatePage = () => {
   const { register, reset, handleSubmit } = useForm<FormInput>();
+  const createProject = api.project;
+
   function onSubmit(data: FormInput) {
     window.alert(JSON.stringify(data, null, 2));
     return true;
